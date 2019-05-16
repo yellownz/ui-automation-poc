@@ -1,0 +1,50 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo ==========  install phase...  ====================
+      - python --version
+      - pip install --upgrade pip
+      - apt-get update
+      - sudo pip install pyvirtualdisplay
+      - echo # Chrome Repo
+      - sudo apt-get -y install fonts-liberation xdg-utils libxss1 libappindicator1 libindicator7 gconf-service libasound2-dev libgconf-2-4 libnspr4 libx11-xcb1 libnss3 xdg-utils
+      - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - sudo dpkg -i google-chrome*.deb
+      - sudo apt-get update
+      - echo # Download
+      - sudo apt-get -y install curl
+      - CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+      - wget https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+      - echo # Extract
+      - unzip chromedriver_linux64.zip
+      - echo # Deploy + Permissions
+      - sudo cp ./chromedriver /usr/bin/
+      - sudo chmod ugo+rx /usr/bin/chromedriver
+      - echo # Install Google Chrome
+      - sudo apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
+      - echo # Install Robot Framework and SeleniumLibrary
+      - pip install robotframework
+      - pip install --upgrade --pre robotframework-seleniumlibrary
+      - pip list
+  pre_build:
+    commands:
+      - echo ==========  pre-build phase...  ====================
+  build:
+    commands:
+      - echo ==========  build phase...  ====================
+      - echo Build started on `date`
+      - echo # Test execution: use -d -i options
+      - robot uitest.robot
+  post_build:
+    commands:
+      - echo ==========  post-build phase...  ====================
+      - echo Build completed on `date`
+      - pwd
+      - ls
+artifacts:
+  files:
+    - Results/log.html
+    - Results/output.xml
+    - Results/report.html
