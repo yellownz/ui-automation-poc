@@ -5,18 +5,18 @@ Suite Setup    create github api session
 *** Variables ***
 ${API_ROOT}             https://api.github.com
 ${API_HEADER_ACCEPT}    application/vnd.github.flash-preview+json, application/vnd.github.ant-man-preview+json
-{GITHUB_TOKEN}          %{GITHUB_TOKEN}
-${COMMIT_ID}            64aa1982864d18016ca9590cb7c5fa99369e1236
-${COMMIT_URI}           /Begoodpapa/ui-automation-poc/statuses/${COMMIT_ID}
+${GITHUB_TOKEN}         %{GITHUB_TOKEN}
+${COMMIT_ID}            22640cf482150597c9a72f2c747360bf8f8908e1
+${COMMIT_URI}           /repos/Begoodpapa/ui-automation-poc/statuses/${COMMIT_ID}
 
 *** Test Cases ***
 List Github Repos
-    [tags]    debug
     ${resp}     Get Request     GITHUB     users/Begoodpapa/repos
         Should Be Equal As Strings  ${resp.status_code}     200     [ERROR] Response not OKAY (200)
         Log     ${resp.content}
 
 Notify Github For Testing Result
+    [tags]    debug
     ${resp}    post request on endpoint    GITHUB    ${COMMIT_URI}
 
 *** Keywords ***
@@ -27,6 +27,6 @@ create github api session
 post request on endpoint
     [Arguments]  ${alias}  ${uri}
     ${resp}     POST Request     ${alias}     ${uri}
-        Should Be Equal As Strings  ${resp.status_code}     200     [ERROR] Response not OKAY (200)
         Log     ${resp.content}
+        Should Be Equal As Strings  ${resp.status_code}     200     [ERROR] Response not OKAY (200)
     [Return]  ${resp}
