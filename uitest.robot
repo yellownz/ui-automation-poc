@@ -10,7 +10,6 @@ ${BROWSER} =  chrome
 ${START_URL} =  https://yellow.co.nz/our-products/search-ads/
 ${SEARCH_WHAT} =  Cafe
 ${SEARCH_WHERE} =  Auckland
-${Purchase_Button} = xpath=//a[contains(text(),'get started')]
 
 *** Test Cases ***
 User can buy online products
@@ -31,7 +30,7 @@ End Web Test
     Close All Browsers
 
 Online Purchase Search Ads Pronduct
-    Wait until element is enabled    ${Purchase_Button}
-    Wait Until Keyword Succeeds    5s    1s    Click Element    ${Purchase_Button}
+    Wait until element is enabled    Xpath=//a[contains(text(),'get started')]
+    Wait Until Keyword Succeeds    5s    1s    Click Element    Xpath=//a[contains(text(),'get started')]
     Sleep    3s
     Capture Page Screenshot
