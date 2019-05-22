@@ -1,19 +1,26 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library     SeleniumLibrary
+Resource    helper.robot
 
 # The following will run for each test case
-Test Setup  Begin Web Test
-Test Teardown  End Web Test
+Test Setup        Begin Web Test
+Test Teardown     End Web Test
+
+# The following will run once for the test suite
+Suite Teardown    Update Global Test Status
 
 *** Variables ***
-${BROWSER} =  chrome
-${START_URL} =  https://yellow.co.nz/our-products/search-ads/
-${SEARCH_WHAT} =  Cafe
-${SEARCH_WHERE} =  Auckland
+${BROWSER} =         chrome
+${START_URL} =       https://yellow.co.nz/our-products/search-ads/
+${SEARCH_WHAT} =     Cafe
+${SEARCH_WHERE} =    Auckland
 
 *** Test Cases ***
-User can buy online products
-    Online Purchase Search Ads Pronduct
+#User can buy online products
+#    Online Purchase Search Ads Pronduct
+
+failure case
+    Fail    just fail the test
 
 *** Keywords ***
 Begin Web Test
