@@ -36,7 +36,7 @@ phases:
       - echo ==========  build phase...  ====================
       - echo Build started on `date`
       - echo # Test execution: use -d -i options
-      - robot uitest.robot
+      - robot uitest.robot result_handling.robot
   post_build:
     commands:
       - echo ==========  post-build phase...  ====================

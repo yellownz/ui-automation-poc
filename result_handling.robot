@@ -27,7 +27,7 @@ Notify Github For Testing Result
     ...    '${GLOBAL_TEST_STATUS}'=='success'    UI automation testing is passed
     ...    '${GLOBAL_TEST_STATUS}'!='success'    UI automation testing is not all passed
 
-    construct github message body    ${GLOBAL_TEST_STATUS}    "${s3_link}"    "${description}"    "click the link <details> to view robot logs"
+    construct github message body    ${GLOBAL_TEST_STATUS}    "${s3_link}"    "${description}"    "click the link <Details> to view robot logs"
     ${resp}    post request on endpoint    GITHUB    ${COMMIT_URI}
 
 *** Keywords ***
