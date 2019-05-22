@@ -7,7 +7,7 @@ Resource       helper.robot
 ${API_ROOT}             https://api.github.com
 ${API_HEADER_ACCEPT}    application/vnd.github.flash-preview+json, application/vnd.github.ant-man-preview+json
 ${GITHUB_TOKEN}         %{GITHUB_TOKEN}
-${COMMIT_ID}            881838e6d9ef95d06f573ef0f1f5191c3c8dcbde
+${COMMIT_ID}            %{COMMIT_ID}
 ${COMMIT_URI}           /repos/Begoodpapa/ui-automation-poc/statuses/${COMMIT_ID}
 
 *** Test Cases ***

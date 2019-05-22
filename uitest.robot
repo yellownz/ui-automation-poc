@@ -10,27 +10,29 @@ Test Teardown     End Web Test
 Suite Teardown    Update Global Test Status
 
 *** Variables ***
-${BROWSER} =         chrome
-${START_URL} =       https://yellow.co.nz/our-products/search-ads/
-${SEARCH_WHAT} =     Cafe
-${SEARCH_WHERE} =    Auckland
+${BROWSER} =            chrome
+${START_URL} =          https://yellow.co.nz/our-products/search-ads/
+${SEARCH_WHAT} =        Cafe
+${SEARCH_WHERE} =       Auckland
+${COMMAND_EXECUTOR}=    https://leo.liang:fL1GyycafGz0bi45KrIsQ9KgZhQ50QoO4VoRzINoC9QUazxIlN@hub.lambdatest.com/wd/hub
 
 *** Test Cases ***
-#User can buy online products
-#    Online Purchase Search Ads Pronduct
+User can buy online products
+    Online Purchase Search Ads Pronduct
 
-failure case
-    Fail    just fail the test
+#failure case
+#    Fail    just fail the test
 
 *** Keywords ***
 Begin Web Test
     # open browser  about:blank  ${BROWSER}
-    ${c_opts} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${c_opts}   add_argument    headless
-    Call Method    ${c_opts}   add_argument    disable-gpu
-    Call Method    ${c_opts}   add_argument    no-sandbox
-    Call Method    ${c_opts}   add_argument    window-size\=1024,768
-    Create Webdriver    Chrome    yol_alias    chrome_options=${c_opts}
+    ${options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${options}   add_argument    headless
+    Call Method    ${options}   add_argument    disable-gpu
+    Call Method    ${options}   add_argument    no-sandbox
+    Call Method    ${options}   add_argument    window-size\=1024,768
+    ${caps}    Call Method    ${options}    to_capabilities
+    Create Webdriver    Remote    command_executor=${COMMAND_EXECUTOR}    desired_capabilities=${caps}
     Go To    ${START_URL}
 
 End Web Test
