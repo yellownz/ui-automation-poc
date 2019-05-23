@@ -26,7 +26,8 @@ phases:
       #- sudo apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
       - echo # Install Robot Framework and SeleniumLibrary robotframework-requests
       - pip install robotframework
-      - pip install --upgrade --pre robotframework-seleniumlibrary robotframework-requests
+      - pip install robotframework-seleniumlibrary==3.3.1
+      - pip install robotframework-requests==0.5.0
       - pip list
   pre_build:
     commands:
