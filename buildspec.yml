@@ -37,7 +37,7 @@ phases:
       - echo ==========  build phase...  ====================
       - echo Build started on `date`
       - echo # Test execution: use -d -i options
-      - robot uitest.robot result_handling.robot
+      - robot --outputdir reports uitest.robot result_handling.robot
   post_build:
     commands:
       - echo ==========  post-build phase...  ====================
@@ -46,6 +46,6 @@ phases:
       - ls
 artifacts:
   files:
-    - Results/log.html
-    - Results/output.xml
-    - Results/report.html
+    - reports/log.html
+    - reports/output.xml
+    - reports/report.html
