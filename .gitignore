@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# robot result files
+log.html
+report.html
+output.xml
+selenium-screenshot-*.png

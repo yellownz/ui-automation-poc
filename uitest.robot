@@ -32,7 +32,8 @@ Begin Web Test
     Call Method    ${options}   add_argument    no-sandbox
     Call Method    ${options}   add_argument    window-size\=1024,768
     ${caps}    Call Method    ${options}    to_capabilities
-    Create Webdriver    Remote    command_executor=${COMMAND_EXECUTOR}    desired_capabilities=${caps}
+    #Create Webdriver    Remote    command_executor=${COMMAND_EXECUTOR}    desired_capabilities=${caps}
+    Create Webdriver    Chrome    desired_capabilities=${caps}
     Go To    ${START_URL}
 
 End Web Test

@@ -24,8 +24,8 @@ Notify Github For Testing Result
     ${s3_link}=    Catenate    SEPARATOR=    https://s3.console.aws.amazon.com/s3/buckets/uiauto-test-logs/    ${parent_folder}/    ${sub_folder}/reports/
 
     ${description}    Set Variable If
-    ...    '${GLOBAL_TEST_STATUS}'=='success'    UI automation testing is passed
-    ...    '${GLOBAL_TEST_STATUS}'!='success'    UI automation testing is not all passed
+    ...    ${GLOBAL_TEST_STATUS}=="success"    UI automation testing ALL PASSED
+    ...    ${GLOBAL_TEST_STATUS}!="success"    UI automation testing was not all passed
 
     construct github message body    ${GLOBAL_TEST_STATUS}    "${s3_link}"    "${description}"    "click the link <Details> to view robot logs"
     ${resp}    post request on endpoint    GITHUB    ${COMMIT_URI}
