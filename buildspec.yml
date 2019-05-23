@@ -24,9 +24,9 @@ phases:
       #- sudo chmod ugo+rx /usr/bin/chromedriver
       #- echo # Install Google Chrome
       #- sudo apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
-      - echo # Install Robot Framework and SeleniumLibrary
+      - echo # Install Robot Framework and SeleniumLibrary robotframework-requests
       - pip install robotframework
-      - pip install --upgrade --pre robotframework-seleniumlibrary
+      - pip install --upgrade --pre robotframework-seleniumlibrary robotframework-requests
       - pip list
   pre_build:
     commands:
