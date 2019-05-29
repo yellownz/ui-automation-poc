@@ -10,11 +10,12 @@ Test Teardown     End Web Test
 Suite Teardown    Update Global Test Status
 
 *** Variables ***
-${BROWSER} =            chrome
-${START_URL} =          https://yellow.co.nz/our-products/search-ads/
-${SEARCH_WHAT} =        Cafe
-${SEARCH_WHERE} =       Auckland
-${COMMAND_EXECUTOR}=    https://leo.liang:fL1GyycafGz0bi45KrIsQ9KgZhQ50QoO4VoRzINoC9QUazxIlN@hub.lambdatest.com/wd/hub
+${BROWSER} =          %{BROWSER}
+${START_URL} =        https://yellow.co.nz/our-products/search-ads/
+${SEARCH_WHAT} =      Cafe
+${SEARCH_WHERE} =     Auckland
+${REMOTE_URL}=        %{REMOTE_URL}
+#${REMOTE_URL}=       https://leo.liang:fL1GyycafGz0bi45KrIsQ9KgZhQ50QoO4VoRzINoC9QUazxIlN@hub.lambdatest.com/wd/hub
 
 *** Test Cases ***
 User can buy online products
@@ -25,15 +26,7 @@ User can buy online products
 
 *** Keywords ***
 Begin Web Test
-    # open browser  about:blank  ${BROWSER}
-    ${options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${options}   add_argument    headless
-    Call Method    ${options}   add_argument    disable-gpu
-    Call Method    ${options}   add_argument    no-sandbox
-    Call Method    ${options}   add_argument    window-size\=1024,768
-    ${caps}    Call Method    ${options}    to_capabilities
-    Create Webdriver    Remote    command_executor=${COMMAND_EXECUTOR}    desired_capabilities=${caps}    # remote browser
-    #Create Webdriver    Chrome    desired_capabilities=${caps}    # local headless brower
+    Create Customized Webdriver    ${BROWSER}    ${REMOTE_URL}
     Go To    ${START_URL}
 
 End Web Test
