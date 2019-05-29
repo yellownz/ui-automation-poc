@@ -50,3 +50,4 @@ artifacts:
     - reports/log.html
     - reports/output.xml
     - reports/report.html
+    - reports/selenium-screenshot*.png
