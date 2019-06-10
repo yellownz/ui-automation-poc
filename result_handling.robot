@@ -11,7 +11,7 @@ ${COMMIT_ID}            %{COMMIT_ID}
 ${COMMIT_URI}           /repos/Begoodpapa/ui-automation-poc/statuses/${COMMIT_ID}
 
 *** Test Cases ***
-#List Github Repos
+#List Github Repository
 #    ${resp}     Get Request     GITHUB     users/Begoodpapa/repos
 #        Should Be Equal As Strings  ${resp.status_code}     200     [ERROR] Response not OKAY (200)
 #        Log     ${resp.content}
