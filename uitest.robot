@@ -16,6 +16,7 @@ ${SEARCH_WHAT} =      Cafe
 ${SEARCH_WHERE} =     Auckland
 ${REMOTE_URL}=        %{REMOTE_URL}
 #${REMOTE_URL}=       https://leo.liang:fL1GyycafGz0bi45KrIsQ9KgZhQ50QoO4VoRzINoC9QUazxIlN@hub.lambdatest.com/wd/hub
+#${REMOTE_URL}=       http://leoliang3:tF9U3xRrWHMUByqDJQz8@hub.browserstack.com:80/wd/hub
 
 *** Test Cases ***
 User can buy online products
