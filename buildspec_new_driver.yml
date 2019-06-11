@@ -6,24 +6,24 @@ phases:
       - echo ==========  install phase...  ====================
       - python --version
       - pip install --upgrade pip
-      #- apt-get update
-      #- sudo pip install pyvirtualdisplay
-      #- echo # Chrome Repo
-      #- sudo apt-get -y install fonts-liberation xdg-utils libxss1 libappindicator1 libindicator7 gconf-service libasound2-dev libgconf-2-4 libnspr4 libx11-xcb1 libnss3 xdg-utils
-      #- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      #- sudo dpkg -i google-chrome*.deb
-      #- sudo apt-get update
-      #- echo # Download
-      #- sudo apt-get -y install curl
-      #- CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-      #- wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
-      #- echo # Extract
-      #- unzip chromedriver_linux64.zip
-      #- echo # Deploy + Permissions
-      #- sudo cp ./chromedriver /usr/bin/
-      #- sudo chmod ugo+rx /usr/bin/chromedriver
-      #- echo # Install Google Chrome
-      #- sudo apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
+      - apt-get update
+      - sudo pip install pyvirtualdisplay
+      - echo # Chrome Repo
+      - sudo apt-get -y install fonts-liberation xdg-utils libxss1 libappindicator1 libindicator7 gconf-service libasound2-dev libgconf-2-4 libnspr4 libx11-xcb1 libnss3 xdg-utils
+      - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - sudo dpkg -i google-chrome*.deb
+      - sudo apt-get update
+      - echo # Download
+      - sudo apt-get -y install curl
+      - CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
+      - wget https://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip
+      - echo # Extract
+      - unzip chromedriver_linux64.zip
+      - echo # Deploy + Permissions
+      - sudo cp ./chromedriver /usr/bin/
+      - sudo chmod ugo+rx /usr/bin/chromedriver
+      - echo # Install Google Chrome
+      - sudo apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
       - echo # Install Robot Framework and SeleniumLibrary robotframework-requests
       - pip install robotframework
       - pip install robotframework-seleniumlibrary==3.3.1
