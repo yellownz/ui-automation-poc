@@ -22,8 +22,12 @@ Set Driver Variables
     ...    htmlunitwithjs=HTMLUNITWITHJS    android=ANDROID    iphone=IPHONE
     ...    safari=SAFARI    headlessfirefox=FIREFOX    headlesschrome=CHROME
     ${dc name}=    Get From Dictionary    ${dc names}    ${browser.lower().replace(' ', '')}
-    ${caps}=    Evaluate    sys.modules['selenium.webdriver'].DesiredCapabilities.${dc name}
-    ...    selenium.webdriver,sys
+    ${driver name}=    Get From Dictionary    ${drivers}    ${browser.lower().replace(' ', '')}
+    #${caps}=    Evaluate    sys.modules['selenium.webdriver'].DesiredCapabilities.${dc name}    selenium.webdriver,sys
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].${driver name}Options()    sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --no-sandbox
+    ${caps}=     Call Method     ${options}    to_capabilities
+
     Run keyword if    '${dc name}'=='SAFARI'    Run keywords
     ...    Set To Dictionary    ${caps}    platform    macOS Sierra
     ...    AND    Set To Dictionary    ${caps}    version    10.0
