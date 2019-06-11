@@ -16,14 +16,23 @@ Set Driver Variables
     ...    headlesschrome=Chrome    headlessfirefox=Firefox
     ${name}=    Evaluate    "Remote" if "${remote_url}"!="None" else $drivers["${browser}"]
     Set Global Variable    ${DRIVER_NAME}    ${name}
+
     ${dc names}=    Create Dictionary    ff=FIREFOX    firefox=FIREFOX    ie=INTERNETEXPLORER
     ...    internetexplorer=INTERNETEXPLORER    googlechrome=CHROME    gc=CHROME
     ...    chrome=CHROME    opera=OPERA    phantomjs=PHANTOMJS    htmlunit=HTMLUNIT
     ...    htmlunitwithjs=HTMLUNITWITHJS    android=ANDROID    iphone=IPHONE
     ...    safari=SAFARI    headlessfirefox=FIREFOX    headlesschrome=CHROME
     ${dc name}=    Get From Dictionary    ${dc names}    ${browser.lower().replace(' ', '')}
-    ${caps}=    Evaluate    sys.modules['selenium.webdriver'].DesiredCapabilities.${dc name}
-    ...    selenium.webdriver,sys
+
+    ${driver name}=    Get From Dictionary    ${drivers}    ${browser.lower().replace(' ', '')}
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].${driver name}Options()    sys, selenium.webdriver
+    Run keyword if    "${name}"!="Remote"    Run keywords    # local browser will be used
+    ...    Call Method           ${options}    add_argument    --no-sandbox
+    ...    AND    Call Method    ${options}    add_argument    --headless
+    ...    AND    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    ${caps}=      Call Method    ${options}    to_capabilities
+
+    # hardcoded in PoC phase
     Run keyword if    '${dc name}'=='SAFARI'    Run keywords
     ...    Set To Dictionary    ${caps}    platform    macOS Sierra
     ...    AND    Set To Dictionary    ${caps}    version    10.0
@@ -36,8 +45,9 @@ Set Driver Variables
 
     ${url as str}=    Evaluate    str('${remote_url}')    # REMOTE_URL = remote means remote Selenium Hub, otherwise it is local browser instance
     ${kwargs}=    Create Dictionary
+    Set To Dictionary    ${kwargs}    desired_capabilities    ${caps}
     Run Keyword If    "${name}"=="Remote"    Set To Dictionary    ${kwargs}    command_executor
-    ...    ${url as str}    desired_capabilities    ${caps}
+    ...    ${url as str}
     Set Global Variable    ${KWARGS}    ${kwargs}
 
 Create Customized Webdriver
