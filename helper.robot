@@ -44,6 +44,7 @@ Set Driver Variables
     ${kwargs}=    Create Dictionary
     Run Keyword If    "${name}"=="Remote"    Set To Dictionary    ${kwargs}    command_executor
     ...    ${url as str}    desired_capabilities    ${caps}
+    Run Keyword If    "${name}"!="Remote"    Set To Dictionary    ${kwargs}    desired_capabilities    ${caps}    
     Set Global Variable    ${KWARGS}    ${kwargs}
 
 Create Customized Webdriver
