@@ -26,7 +26,7 @@ Set Driver Variables
     #${caps}=    Evaluate    sys.modules['selenium.webdriver'].DesiredCapabilities.${dc name}    selenium.webdriver,sys
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].${driver name}Options()    sys, selenium.webdriver
     Call Method    ${options}    add_argument    --no-sandbox
-    #Call Method    ${options}    add_argument    headless
+    Call Method    ${options}    add_argument    --headless
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
     ${caps}=     Call Method     ${options}    to_capabilities
 
